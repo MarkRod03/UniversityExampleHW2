@@ -1,0 +1,382 @@
+@prefix : <http://www.semanticweb.org/mark/ontologies/2025/2/University/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/mark/ontologies/2025/2/University/> .
+
+<http://www.semanticweb.org/mark/ontologies/2025/2/University> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#departmentOf
+:departmentOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Department ;
+              rdfs:range :School .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#helpsWith
+:helpsWith rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :tutorFor .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#memberOf
+:memberOf rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Faculty ;
+          rdfs:range :Department .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#offeredBy
+:offeredBy rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Course ;
+           rdfs:range :Department .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#schoolOf
+:schoolOf rdf:type owl:ObjectProperty ;
+          rdfs:domain :School ;
+          rdfs:range :University .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#taughtBy
+:taughtBy rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Course ;
+          rdfs:range :Faculty .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#tutorFor
+:tutorFor rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Student ;
+          rdfs:range :Course .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#course_name
+:course_name rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Course ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#course_number
+:course_number rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Course ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdf:type owl:FunctionalProperty ;
+      rdfs:domain :Person ;
+      rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#AdjunctFaculty
+:AdjunctFaculty rdf:type owl:Class ;
+                rdfs:subClassOf :Faculty .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Course
+:Course rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Department
+:Department rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty
+:Faculty rdf:type owl:Class ;
+         rdfs:subClassOf :Staff .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#FullTimeFaculty
+:FullTimeFaculty rdf:type owl:Class ;
+                 rdfs:subClassOf :Faculty .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#GraduateCourse
+:GraduateCourse rdf:type owl:Class ;
+                rdfs:subClassOf :Course .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#School
+:School rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Secretary
+:Secretary rdf:type owl:Class ;
+           rdfs:subClassOf :Faculty .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Staff
+:Staff rdf:type owl:Class ;
+       rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Student
+:Student rdf:type owl:Class ;
+         rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#UndergraduateCourse
+:UndergraduateCourse rdf:type owl:Class ;
+                     rdfs:subClassOf :Course .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#University
+:University rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CCSU
+:CCSU rdf:type owl:NamedIndividual ,
+               :University ;
+      rdfs:label "Central Connecticut State University" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CET249
+:CET249 rdf:type owl:NamedIndividual ,
+                 :UndergraduateCourse ;
+        :offeredBy :CET_Department ;
+        :taughtBy :Faculty7 ;
+        :course_name "Introduction to Networking Technology" ;
+        :course_number "CET249" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CET569
+:CET569 rdf:type owl:NamedIndividual ,
+                 :GraduateCourse ;
+        :offeredBy :CET_Department ;
+        :taughtBy :Faculty9 ;
+        :course_name "Network Security Management" ;
+        :course_number "CET569" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CET_Department
+:CET_Department rdf:type owl:NamedIndividual ,
+                         :Department ;
+                :departmentOf :SEST ;
+                rdfs:label "Computer Electronics Technology Department" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS151
+:CS151 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty1 ,
+                 :Faculty8 ;
+       :course_name "Computer Science 1" ;
+       :course_number "CS151" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS253
+:CS253 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty2 ,
+                 :Faculty3 ;
+       :course_name "Data Structures" ;
+       :course_number "CS253" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS254
+:CS254 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty1 ,
+                 :Faculty6 ;
+       :course_name "Assembly Language" ;
+       :course_number "CS254" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS355
+:CS355 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty2 ,
+                 :Faculty5 ;
+       :course_name "Systems Programming" ;
+       :course_number "CS355" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS385
+:CS385 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty4 ;
+       :course_name "Computer Architecture" ;
+       :course_number "CS385" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS410
+:CS410 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty5 ;
+       :course_name "Software Engineering" ;
+       :course_number "CS410" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS460
+:CS460 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty6 ;
+       :course_name "Database Concepts" ;
+       :course_number "CS460" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS494
+:CS494 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty1 ;
+       :course_name "Cryptographic Systems" ;
+       :course_number "CS494" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS498
+:CS498 rdf:type owl:NamedIndividual ,
+                :UndergraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty5 ;
+       :course_name "Senior Project" ;
+       :course_number "CS498" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS510
+:CS510 rdf:type owl:NamedIndividual ,
+                :GraduateCourse ;
+       :offeredBy :CS_Department ;
+       :taughtBy :Faculty5 ;
+       :course_name "Fundementals of Software Engineering" ;
+       :course_number "CS510" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#CS_Department
+:CS_Department rdf:type owl:NamedIndividual ,
+                        :Department ;
+               :departmentOf :SEST ;
+               rdfs:label "Computer Science Department" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty1
+:Faculty1 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Bradley P. Kjell" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty2
+:Faculty2 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Md Rafiul Hassan" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty3
+:Faculty3 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Neli P. Zlatareva" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty4
+:Faculty4 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Zdravko I. Markov" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty5
+:Faculty5 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Stan A. Kurkovsky" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty6
+:Faculty6 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CS_Department ;
+          :name "Samir E. Hamada" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty7
+:Faculty7 rdf:type owl:NamedIndividual ,
+                   :AdjunctFaculty ;
+          :memberOf :CET_Department ;
+          :name "John Edward Palmer" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty8
+:Faculty8 rdf:type owl:NamedIndividual ,
+                   :AdjunctFaculty ;
+          :memberOf :CS_Department ;
+          :name "Pradeep Kumar Sahu" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#Faculty9
+:Faculty9 rdf:type owl:NamedIndividual ,
+                   :FullTimeFaculty ;
+          :memberOf :CET_Department ;
+          :name "Xiaobing Hou" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#SEST
+:SEST rdf:type owl:NamedIndividual ,
+               :School ;
+      :schoolOf :CCSU ;
+      rdfs:label "School of Engineering, Science, and Technology" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#secretary1
+:secretary1 rdf:type owl:NamedIndividual ,
+                     :Secretary ;
+            :name "Bonnie Lachance" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#tutor1
+:tutor1 rdf:type owl:NamedIndividual ,
+                 :Student ;
+        :helpsWith :CS151 ,
+                   :CS253 ,
+                   :CS254 ;
+        :name "Carter" .
+
+
+###  http://www.semanticweb.org/mark/ontologies/2025/2/University#tutor2
+:tutor2 rdf:type owl:NamedIndividual ,
+                 :Student ;
+        :helpsWith :CS151 ,
+                   :CS254 ,
+                   :CS355 ;
+        :name "Emily" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
